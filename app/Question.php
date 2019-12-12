@@ -2,8 +2,8 @@
 
 namespace App;
 
-use Illuminate\Database\Eloquent\Model;
 use App\User;
+use Illuminate\Database\Eloquent\Model;
 
 class Question extends Model
 {
@@ -28,5 +28,16 @@ class Question extends Model
     public function getCreatedDateAttribute()
     {
         return $this->created_at->diffForHumans();
+    }
+
+    public function getStatusAttribute()
+    {
+        if ($this->answers > 0):
+            if ($this->best_answer_id):
+                return 'answer-accepted';
+            endif;
+            return 'answered';
+        endif;
+        return 'unanswered';
     }
 }
