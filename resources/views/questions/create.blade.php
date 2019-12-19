@@ -21,31 +21,44 @@
                     <form action="{{ route('questions.store') }}" method="post">
 
                         @csrf
-                    
+
                         <div class="form-group">
+
                             <label for="question-title">Question title</label>
-                            <input type="text" name="title" id="question-title" class="form-control">
+
+                            <input type="text" value="{{ old('title') }}" name="title" id="question-title"
+                                class="form-control">
+
                             @if ($errors->has('title'))
-                                <div class="invalid-feedback">
-                                    <strong>{{ $errors->first('title') }}</strong>
-                                </div>
+                            <div class="text-danger">
+                                <strong>{{ $errors->first('title') }}</strong>
+                            </div>
                             @endif
+
                         </div>
 
                         <div class="form-group">
+
                             <label for="question-bodu">Explaine your question</label>
-                            <textarea name="body" id="question-body" class="form-control" rows="10"></textarea>
+
+                            <textarea name="body" id="question-body" class="form-control" rows="10">
+
+                                {{ old('body') }}
+
+                            </textarea>
+
                             @if ($errors->has('body'))
-                                <div class="invalid-feedback">
-                                    <strong>{{ $errors->first('body') }}</strong>
-                                </div>
+                            <div class="text-danger">
+                                <strong>{{ $errors->first('body') }}</strong>
+                            </div>
                             @endif
+
                         </div>
 
                         <div class="form-group">
                             <button type="submit" class="btn btn-outline-primary btn-lg">Ask this question</button>
                         </div>
-                    
+
                     </form>
 
                 </div>

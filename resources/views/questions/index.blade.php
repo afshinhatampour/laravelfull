@@ -18,6 +18,8 @@
 
                 <div class="card-body">
 
+                    @include('layouts.messages')
+
                     @foreach ($questions as $question)
 
                     <div class="media">
